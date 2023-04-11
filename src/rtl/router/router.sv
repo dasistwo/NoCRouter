@@ -1,7 +1,8 @@
+`timescale 1ns / 1ps
 import noc_params::*;
 
 module router #(
-    parameter BUFFER_SIZE = 8,
+    parameter BUFFER_SIZE = BUFFER_SIZE,
     parameter X_CURRENT = MESH_SIZE_X/2,
     parameter Y_CURRENT = MESH_SIZE_Y/2
 )(

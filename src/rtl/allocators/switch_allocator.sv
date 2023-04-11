@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 import noc_params::*;
 
 module switch_allocator #(

@@ -1,7 +1,8 @@
+`timescale 1ns / 1ps
 import noc_params::*;
 
 module input_buffer #(
-    parameter BUFFER_SIZE = 8
+    parameter BUFFER_SIZE = BUFFER_SIZE
 )(
     input flit_novc_t data_i,
     input read_i,
@@ -97,8 +98,8 @@ module input_buffer #(
     always_comb
     begin
         data_o.flit_label = read_flit.flit_label;
-		data_o.vc_id = downstream_vc_o;
-		data_o.data = read_flit.data;
+        data_o.vc_id = downstream_vc_o;
+        data_o.data = read_flit.data;
 
         ss_next = ss;
         out_port_next = out_port_o;

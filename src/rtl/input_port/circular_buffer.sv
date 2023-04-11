@@ -1,7 +1,8 @@
+`timescale 1ns / 1ps
 import noc_params::*;
 
 module circular_buffer #(
-    parameter BUFFER_SIZE = 8
+    parameter BUFFER_SIZE = BUFFER_SIZE
 )(
     input flit_novc_t data_i,
     input read_i,

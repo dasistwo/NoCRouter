@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module router_link (
     router2router.upstream router_if_up,
     router2router.downstream router_if_down

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module round_robin_arbiter #(
     parameter AGENTS_NUM = 4
 )(

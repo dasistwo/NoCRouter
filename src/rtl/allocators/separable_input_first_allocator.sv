@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 import noc_params::*;
 
 module separable_input_first_allocator #(
