@@ -1,1 +1,4 @@
 .DS_Store
+/sim/xcelium.d
+*.log
+WORK*
