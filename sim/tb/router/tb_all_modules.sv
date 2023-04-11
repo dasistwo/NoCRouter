@@ -334,4 +334,10 @@ module tb_all_modules;
         insert_not_compl[port_num] = 1;
     endtask
 
+`ifdef WAVE 
+    initial begin
+      $shm_open("WAVE");
+      $shm_probe("ASM");
+    end
+`endif
 endmodule

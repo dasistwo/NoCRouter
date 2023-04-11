@@ -639,4 +639,10 @@ module routers_mock #()(
         router_if_east_down.is_allocatable  = is_allocatable_in[EAST];
         
     end 
+`ifdef WAVE 
+    initial begin
+      $shm_open("WAVE");
+      $shm_probe("ASM");
+    end
+`endif
 endmodule

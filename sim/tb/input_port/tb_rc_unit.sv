@@ -4,8 +4,8 @@ import noc_params::*;
  
 
 module tb_rc_unit #(
-    parameter MESH_SIZE_X = 5,
-    parameter MESH_SIZE_Y = 7,
+    parameter MESH_SIZE_X = 4,
+    parameter MESH_SIZE_Y = 4,
     parameter X_CURRENT = MESH_SIZE_X / 2,
     parameter Y_CURRENT = MESH_SIZE_Y / 2
 );

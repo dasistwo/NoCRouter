@@ -4,8 +4,8 @@ import noc_params::*;
 
 module tb_mesh #(
     parameter BUFFER_SIZE = 8,
-    parameter MESH_SIZE_X = 2,
-    parameter MESH_SIZE_Y = 3
+    parameter MESH_SIZE_X = 4,
+    parameter MESH_SIZE_Y = 4
 );
     /*
     Input signals
@@ -144,4 +144,10 @@ module tb_mesh #(
         num_op++;
     endtask
 
+`ifdef WAVE 
+    initial begin
+      $shm_open("WAVE");
+      $shm_probe("ASM");
+    end
+`endif
 endmodule

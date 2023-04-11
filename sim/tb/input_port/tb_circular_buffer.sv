@@ -54,6 +54,14 @@ module tb_circular_buffer #(
         .on_off_o(on_off_o)
     );
 
+
+    function logic check_flits();
+        if(flit_read == data_o)
+            check_flits = 1;
+        else
+            check_flits = 0;   
+    endfunction 
+
     task dump_output();
         $dumpfile("out.vcd");
         $dumpvars(0, tb_circular_buffer);
@@ -93,7 +101,7 @@ module tb_circular_buffer #(
             i = i - 1;
             num_operation = num_operation + 1;
             @(negedge clk);
-            if(~check_flits)
+            if(~check_flits())
                 $display("[READ] FAILED");
             else
                 $display("[READ] PASSED");
@@ -142,7 +150,7 @@ module tb_circular_buffer #(
                 flit_queue.push_back(flit_written);
                 num_operation = num_operation + 1;
                 @(negedge clk);
-                if(check_flits & ~is_empty_o)
+                if(check_flits() & ~is_empty_o)
                     $display("[READ AND WRITE] PASSED");
                 else
                     $display("[READ AND WRITE] FAILED");
@@ -166,12 +174,5 @@ module tb_circular_buffer #(
         flit_written.data.head_data.y_dest <= {DEST_ADDR_SIZE_Y{num_operation}}; 
         flit_written.data.head_data.head_pl <= {HEAD_PAYLOAD_SIZE{num_operation}};
     endtask
-
-    function logic check_flits();
-        if(flit_read == data_o)
-            check_flits = 1;
-        else
-            check_flits = 0;   
-    endfunction 
     
 endmodule
