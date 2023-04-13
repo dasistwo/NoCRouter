@@ -1,0 +1,88 @@
+ 
+****************************************
+Report : area
+Design : router
+Version: S-2021.06-SP2
+Date   : Wed Apr 12 17:36:37 2023
+****************************************
+
+Library(s) Used:
+
+    asap7sc7p5t_SIMPLE_LVT_TT_ccsa_201020 (File: /share/DB/ASAP7/asap7-ccsa/asap7sc7p5t_SIMPLE_LVT_TT_ccsa.db)
+    asap7sc7p5t_INVBUF_LVT_TT_ccsa_201020 (File: /share/DB/ASAP7/asap7-ccsa/asap7sc7p5t_INVBUF_LVT_TT_ccsa.db)
+    asap7sc7p5t_OA_LVT_TT_ccsa_201020 (File: /share/DB/ASAP7/asap7-ccsa/asap7sc7p5t_OA_LVT_TT_ccsa.db)
+    asap7sc7p5t_AO_LVT_TT_ccsa_201020 (File: /share/DB/ASAP7/asap7-ccsa/asap7sc7p5t_AO_LVT_TT_ccsa.db)
+    asap7sc7p5t_SEQ_LVT_TT_ccsa_201020 (File: /share/DB/ASAP7/asap7-ccsa/asap7sc7p5t_SEQ_LVT_TT_ccsa.db)
+
+Number of ports:                        30908
+Number of nets:                        277141
+Number of cells:                       248934
+Number of combinational cells:         161606
+Number of sequential cells:             87307
+Number of macros/black boxes:               0
+Number of buf/inv:                       9950
+Number of references:                      84
+
+Combinational area:              13645.786674
+Buf/Inv area:                      484.610045
+Noncombinational area:           25503.509999
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                 39149.296673
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  -------------------  ------------------------------ 
+Hierarchical cell                 Absolute    Percent  Combi-      Noncombi-   Black-
+                                  Total       Total    national    national    boxes   Design
+--------------------------------  ----------  -------  ----------  ----------  ------  --------------------------------------------------------------------------
+router                            39149.2967    100.0    938.2084    854.9129  0.0000  router
+crossbar                           1537.2423      3.9    787.8303    749.4120  0.0000  crossbar_I_ib_if_input_block2crossbar__I_sa_if_switch_allocator2crossbar__
+input_block/generate_input_ports[0].input_port/generate_virtual_channels[0].input_buffer/circular_buffer
+                                   1790.2344      4.6    595.5784   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_19
+input_block/generate_input_ports[0].input_port/generate_virtual_channels[1].input_buffer/circular_buffer
+                                   1789.8845      4.6    595.2285   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_18
+input_block/generate_input_ports[0].input_port/generate_virtual_channels[2].input_buffer/circular_buffer
+                                   1792.0132      4.6    597.3572   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_17
+input_block/generate_input_ports[0].input_port/generate_virtual_channels[3].input_buffer/circular_buffer
+                                   1791.9694      4.6    595.7971   1196.1723  0.0000  circular_buffer_BUFFER_SIZE8_16
+input_block/generate_input_ports[1].input_port/generate_virtual_channels[0].input_buffer/circular_buffer
+                                   1790.3073      4.6    595.6513   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_15
+input_block/generate_input_ports[1].input_port/generate_virtual_channels[1].input_buffer/circular_buffer
+                                   1789.1118      4.6    594.4558   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_14
+input_block/generate_input_ports[1].input_port/generate_virtual_channels[2].input_buffer/circular_buffer
+                                   1790.9488      4.6    596.2928   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_13
+input_block/generate_input_ports[1].input_port/generate_virtual_channels[3].input_buffer/circular_buffer
+                                   1790.3219      4.6    594.9077   1195.4142  0.0000  circular_buffer_BUFFER_SIZE8_12
+input_block/generate_input_ports[2].input_port/generate_virtual_channels[0].input_buffer/circular_buffer
+                                   1791.2988      4.6    596.6428   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_11
+input_block/generate_input_ports[2].input_port/generate_virtual_channels[1].input_buffer/circular_buffer
+                                   1792.0278      4.6    597.3718   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_10
+input_block/generate_input_ports[2].input_port/generate_virtual_channels[2].input_buffer/circular_buffer
+                                   1792.9317      4.6    598.2757   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_9
+input_block/generate_input_ports[2].input_port/generate_virtual_channels[3].input_buffer/circular_buffer
+                                   1788.7327      4.6    594.0767   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_8
+input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer
+                                   1790.0303      4.6    595.3743   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_7
+input_block/generate_input_ports[3].input_port/generate_virtual_channels[1].input_buffer/circular_buffer
+                                   1790.6572      4.6    596.0012   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_6
+input_block/generate_input_ports[3].input_port/generate_virtual_channels[2].input_buffer/circular_buffer
+                                   1790.8614      4.6    596.2054   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_5
+input_block/generate_input_ports[3].input_port/generate_virtual_channels[3].input_buffer/circular_buffer
+                                   1793.8211      4.6    598.4069   1195.4142  0.0000  circular_buffer_BUFFER_SIZE8_4
+input_block/generate_input_ports[4].input_port/generate_virtual_channels[0].input_buffer/circular_buffer
+                                   1791.5320      4.6    596.8760   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_3
+input_block/generate_input_ports[4].input_port/generate_virtual_channels[1].input_buffer/circular_buffer
+                                   1790.2344      4.6    594.0621   1196.1723  0.0000  circular_buffer_BUFFER_SIZE8_2
+input_block/generate_input_ports[4].input_port/generate_virtual_channels[2].input_buffer/circular_buffer
+                                   1792.3485      4.6    596.1762   1196.1723  0.0000  circular_buffer_BUFFER_SIZE8_1
+input_block/generate_input_ports[4].input_port/generate_virtual_channels[3].input_buffer/circular_buffer
+                                   1789.6658      4.6    595.0098   1194.6560  0.0000  circular_buffer_BUFFER_SIZE8_0
+--------------------------------  ----------  -------  ----------  ----------  ------  --------------------------------------------------------------------------
+Total                                                  13645.7867  25503.5100  0.0000
+
+1

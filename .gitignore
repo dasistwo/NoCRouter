@@ -1,4 +1,9 @@
 .DS_Store
 /sim/xcelium.d
+/sim/vcd_saif
 *.log
 WORK*
+*.vcd
+/syn/log
+*.sdc
+*.sdf

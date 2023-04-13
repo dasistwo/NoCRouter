@@ -22,66 +22,65 @@ module router #(
 );
 
     //connections from upstream
-    flit_t data_out [PORT_NUM-1:0];
-    logic  [PORT_NUM-1:0] is_valid_out;
-    logic  [PORT_NUM-1:0] [VC_NUM-1:0] is_on_off_in;
-    logic  [PORT_NUM-1:0] [VC_NUM-1:0] is_allocatable_in;
+    reg [$bits(flit_t)-1:0] data_out [PORT_NUM-1:0];
+    reg  [PORT_NUM-1:0] is_valid_out;
+    reg  [PORT_NUM-1:0] [VC_NUM-1:0] is_on_off_in;
+    reg  [PORT_NUM-1:0] [VC_NUM-1:0] is_allocatable_in;
 
     //connections from downstream
-    flit_t data_in [PORT_NUM-1:0];
-    logic  is_valid_in [PORT_NUM-1:0];
-    logic  [VC_NUM-1:0] is_on_off_out [PORT_NUM-1:0];
-    logic  [VC_NUM-1:0] is_allocatable_out [PORT_NUM-1:0];
+    reg [$bits(flit_t)-1:0] data_in [PORT_NUM-1:0];
+    reg  is_valid_in [PORT_NUM-1:0];
+    reg  [VC_NUM-1:0] is_on_off_out [PORT_NUM-1:0];
+    reg  [VC_NUM-1:0] is_allocatable_out [PORT_NUM-1:0];
 
-    always_comb
-    begin
-        router_if_local_up.data = data_out[LOCAL];
-        router_if_north_up.data = data_out[NORTH];
-        router_if_south_up.data = data_out[SOUTH];
-        router_if_west_up.data  = data_out[WEST];
-        router_if_east_up.data  = data_out[EAST];
+    always_ff @(posedge clk) begin : IO_buffering
+        router_if_local_up.data <= data_out[LOCAL];
+        router_if_north_up.data <= data_out[NORTH];
+        router_if_south_up.data <= data_out[SOUTH];
+        router_if_west_up.data  <= data_out[WEST];
+        router_if_east_up.data  <= data_out[EAST];
 
-        router_if_local_up.is_valid = is_valid_out[LOCAL];
-        router_if_north_up.is_valid = is_valid_out[NORTH];
-        router_if_south_up.is_valid = is_valid_out[SOUTH];
-        router_if_west_up.is_valid  = is_valid_out[WEST];
-        router_if_east_up.is_valid  = is_valid_out[EAST];
+        router_if_local_up.is_valid <= is_valid_out[LOCAL];
+        router_if_north_up.is_valid <= is_valid_out[NORTH];
+        router_if_south_up.is_valid <= is_valid_out[SOUTH];
+        router_if_west_up.is_valid  <= is_valid_out[WEST];
+        router_if_east_up.is_valid  <= is_valid_out[EAST];
 
-        is_on_off_in[LOCAL] = router_if_local_up.is_on_off;
-        is_on_off_in[NORTH] = router_if_north_up.is_on_off;
-        is_on_off_in[SOUTH] = router_if_south_up.is_on_off;
-        is_on_off_in[WEST]  = router_if_west_up.is_on_off;
-        is_on_off_in[EAST]  = router_if_east_up.is_on_off;
+        is_on_off_in[LOCAL] <= router_if_local_up.is_on_off;
+        is_on_off_in[NORTH] <= router_if_north_up.is_on_off;
+        is_on_off_in[SOUTH] <= router_if_south_up.is_on_off;
+        is_on_off_in[WEST]  <= router_if_west_up.is_on_off;
+        is_on_off_in[EAST]  <= router_if_east_up.is_on_off;
 
-        is_allocatable_in[LOCAL] = router_if_local_up.is_allocatable;
-        is_allocatable_in[NORTH] = router_if_north_up.is_allocatable;
-        is_allocatable_in[SOUTH] = router_if_south_up.is_allocatable;
-        is_allocatable_in[WEST]  = router_if_west_up.is_allocatable;
-        is_allocatable_in[EAST]  = router_if_east_up.is_allocatable;
+        is_allocatable_in[LOCAL] <= router_if_local_up.is_allocatable;
+        is_allocatable_in[NORTH] <= router_if_north_up.is_allocatable;
+        is_allocatable_in[SOUTH] <= router_if_south_up.is_allocatable;
+        is_allocatable_in[WEST]  <= router_if_west_up.is_allocatable;
+        is_allocatable_in[EAST]  <= router_if_east_up.is_allocatable;
 
-        data_in[LOCAL] = router_if_local_down.data;
-        data_in[NORTH] = router_if_north_down.data;
-        data_in[SOUTH] = router_if_south_down.data;
-        data_in[WEST]  = router_if_west_down.data;
-        data_in[EAST]  = router_if_east_down.data;
+        data_in[LOCAL] <= router_if_local_down.data;
+        data_in[NORTH] <= router_if_north_down.data;
+        data_in[SOUTH] <= router_if_south_down.data;
+        data_in[WEST]  <= router_if_west_down.data;
+        data_in[EAST]  <= router_if_east_down.data;
 
-        is_valid_in[LOCAL] = router_if_local_down.is_valid;
-        is_valid_in[NORTH] = router_if_north_down.is_valid;
-        is_valid_in[SOUTH] = router_if_south_down.is_valid;
-        is_valid_in[WEST]  = router_if_west_down.is_valid;
-        is_valid_in[EAST]  = router_if_east_down.is_valid;
+        is_valid_in[LOCAL] <= router_if_local_down.is_valid;
+        is_valid_in[NORTH] <= router_if_north_down.is_valid;
+        is_valid_in[SOUTH] <= router_if_south_down.is_valid;
+        is_valid_in[WEST]  <= router_if_west_down.is_valid;
+        is_valid_in[EAST]  <= router_if_east_down.is_valid;
 
-        router_if_local_down.is_on_off = is_on_off_out[LOCAL];
-        router_if_north_down.is_on_off = is_on_off_out[NORTH];
-        router_if_south_down.is_on_off = is_on_off_out[SOUTH];
-        router_if_west_down.is_on_off  = is_on_off_out[WEST];
-        router_if_east_down.is_on_off  = is_on_off_out[EAST];
+        router_if_local_down.is_on_off <= is_on_off_out[LOCAL];
+        router_if_north_down.is_on_off <= is_on_off_out[NORTH];
+        router_if_south_down.is_on_off <= is_on_off_out[SOUTH];
+        router_if_west_down.is_on_off  <= is_on_off_out[WEST];
+        router_if_east_down.is_on_off  <= is_on_off_out[EAST];
 
-        router_if_local_down.is_allocatable = is_allocatable_out[LOCAL];
-        router_if_north_down.is_allocatable = is_allocatable_out[NORTH];
-        router_if_south_down.is_allocatable = is_allocatable_out[SOUTH];
-        router_if_west_down.is_allocatable  = is_allocatable_out[WEST];
-        router_if_east_down.is_allocatable  = is_allocatable_out[EAST];
+        router_if_local_down.is_allocatable <= is_allocatable_out[LOCAL];
+        router_if_north_down.is_allocatable <= is_allocatable_out[NORTH];
+        router_if_south_down.is_allocatable <= is_allocatable_out[SOUTH];
+        router_if_west_down.is_allocatable  <= is_allocatable_out[WEST];
+        router_if_east_down.is_allocatable  <= is_allocatable_out[EAST];
 
     end
 

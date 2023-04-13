@@ -21,18 +21,8 @@ module crossbar #(
     begin
         for(int ip = 0; ip < PORT_NUM; ip = ip + 1)
         begin
-            data_o[ip] <= data_o_reg[ip];
+            data_o[ip] = ib_if.flit[sa_if.input_vc_sel[ip]];
         end
-
-        for(int ip = 0; ip < PORT_NUM; ip = ip + 1)
-        begin
-            data_o_reg[ip] <= ib_if.flit[sa_if.input_vc_sel[ip]];
-        end
-        
-        // for(int ip = 0; ip < PORT_NUM; ip = ip + 1)
-        // begin
-        //     data_o[ip] <= ib_if.flit[sa_if.input_vc_sel[ip]];
-        // end
     end
 
 endmodule

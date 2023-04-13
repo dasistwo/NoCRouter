@@ -1,0 +1,50 @@
+
+#########################
+# Vivado Native
+#########################
+
+#########################
+# Xilinx IP
+#########################
+
+#########################
+# RTL
+#########################
+../src/rtl/noc/noc.sv
+../src/if/input_block2crossbar.sv
+../src/if/input_block2switch_allocator.sv
+../src/if/input_block2vc_allocator.sv
+../src/if/router2router.sv
+../src/if/switch_allocator2crossbar.sv
+../src/rtl/allocators/round_robin_arbiter.sv
+../src/rtl/allocators/separable_input_first_allocator.sv
+../src/rtl/allocators/switch_allocator.sv
+../src/rtl/allocators/vc_allocator.sv
+../src/rtl/crossbar/crossbar.sv
+../src/rtl/input_port/circular_buffer.sv
+../src/rtl/input_port/input_block.sv
+../src/rtl/input_port/input_buffer.sv
+../src/rtl/input_port/input_port.sv
+../src/rtl/input_port/rc_unit.sv
+../src/rtl/noc/mesh.sv
+../src/rtl/noc/node_link.sv
+../src/rtl/noc/router_link.sv
+../src/rtl/router/router.sv
+
+#########################
+# Testbench
+#########################
+./tb/allocators/tb_round_robin_arbiter.sv
+./tb/allocators/tb_separable_input_first_allocator.sv
+./tb/allocators/tb_switch_allocator.sv
+./tb/allocators/tb_vc_allocator.sv
+./tb/crossbar/tb_crossbar.sv
+./tb/input_port/tb_circular_buffer.sv
+./tb/input_port/tb_input_buffer.sv
+./tb/input_port/tb_input_port.sv
+./tb/input_port/tb_rc_unit.sv
+./tb/mesh/tb_mesh.sv
+./tb/mesh/tb_two_routers.sv
+./tb/router/tb_router.sv
+./tb/router/tb_router_worst.sv
+./tb/router/tb_all_modules.sv

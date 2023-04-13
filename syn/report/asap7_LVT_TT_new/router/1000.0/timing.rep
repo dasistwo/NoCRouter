@@ -1,0 +1,65 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : router
+Version: S-2021.06-SP2
+Date   : Wed Apr 12 17:36:40 2023
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: PVT_0P7V_25C   Library: asap7sc7p5t_AO_LVT_TT_ccsa_201020
+Wire Load Model Mode: top
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/clk_r_REG54566_S2
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                  600.00     600.00 r
+  rst (in)                                                5.68     605.68 r
+  U14830/Y (BUFx12f_ASAP7_75t_L)                         16.71     622.39 r
+  U11884/Y (BUFx12f_ASAP7_75t_L)                         21.59     643.98 r
+  input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/rst (circular_buffer_BUFFER_SIZE8_7)
+                                                          0.00     643.98 r
+  input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/U1743/Y (AOI211xp5_ASAP7_75t_L)
+                                                         13.88     657.86 f
+  input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/U1744/Y (NAND2xp5_ASAP7_75t_L)
+                                                         19.79     677.65 r
+  input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/U1544/Y (NOR2xp33_ASAP7_75t_L)
+                                                         33.76     711.41 f
+  input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/U1709/Y (HB1xp67_ASAP7_75t_L)
+                                                         66.39     777.80 f
+  input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/U6012/Y (INVx1_ASAP7_75t_L)
+                                                        156.69     934.49 r
+  input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/U6869/Y (OAI22xp33_ASAP7_75t_L)
+                                                         23.76     958.25 f
+  input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/U6870/Y (INVxp33_ASAP7_75t_L)
+                                                         20.75     979.00 r
+  input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/clk_r_REG54566_S2/D (DFFHQNx1_ASAP7_75t_L)
+                                                          0.00     979.00 r
+  data arrival time                                                979.00
+
+  clock clk (rise edge)                                1000.00    1000.00
+  clock network delay (ideal)                             0.00    1000.00
+  clock uncertainty                                     -10.00     990.00
+  input_block/generate_input_ports[3].input_port/generate_virtual_channels[0].input_buffer/circular_buffer/clk_r_REG54566_S2/CLK (DFFHQNx1_ASAP7_75t_L)
+                                                          0.00     990.00 r
+  library setup time                                    -10.82     979.18
+  data required time                                               979.18
+  --------------------------------------------------------------------------
+  data required time                                               979.18
+  data arrival time                                               -979.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.18
+
+
+1

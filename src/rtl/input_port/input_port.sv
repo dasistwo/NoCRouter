@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 import noc_params::*;
 
 module input_port #(
@@ -31,14 +30,6 @@ module input_port #(
 
     port_t out_port_cmd;
 
-    reg [$bits(flit_t)-1:0] data_buffer;
-    reg valid_flit_buffer;
-    reg [VC_SIZE-1:0] sa_sel_vc_buffer;
-    reg [VC_SIZE-1:0] va_new_vc_buffer [VC_NUM-1:0];
-    reg [VC_NUM-1:0] va_valid_buffer;
-    reg sa_valid_buffer;
-    flit_t flit_buffer;
-
     logic [VC_NUM-1:0] read_cmd;
     logic [VC_NUM-1:0] write_cmd;
 
@@ -53,8 +44,8 @@ module input_port #(
                 .data_i(data_cmd),
                 .read_i(read_cmd[vc]),
                 .write_i(write_cmd[vc]),
-                .vc_new_i(va_new_vc_buffer[vc]),
-                .vc_valid_i(va_valid_buffer[vc]),
+                .vc_new_i(va_new_vc_i[vc]),
+                .vc_valid_i(va_valid_i[vc]),
                 .out_port_i(out_port_cmd),
                 .rst(rst),
                 .clk(clk),
@@ -79,29 +70,10 @@ module input_port #(
         .DEST_ADDR_SIZE_Y(DEST_ADDR_SIZE_Y)
     )
     rc_unit (
-        .x_dest_i(flit_buffer.data.head_data.x_dest),
-        .y_dest_i(flit_buffer.data.head_data.y_dest),
+        .x_dest_i(data_i.data.head_data.x_dest),
+        .y_dest_i(data_i.data.head_data.y_dest),
         .out_port_o(out_port_cmd)
     );
-    /*
-    Sequential logic:
-    - if the input flit is valid, store it in the corresponding virtual channel
-      buffer.
-    */
-    always_ff @(posedge clk or posedge rst) begin
-        if(rst) begin
-            data_buffer <= {VC_NUM{1'b0}};
-        end
-        else begin
-            if(valid_flit_i)
-                data_buffer <= data_i;
-                valid_flit_buffer <= valid_flit_i;
-                sa_sel_vc_buffer <= sa_sel_vc_i;
-                va_new_vc_buffer <= va_new_vc_i;
-                va_valid_buffer <= va_valid_i;
-                sa_valid_buffer <= sa_valid_i;
-        end
-    end
 
     /*
     Combinational logic:
@@ -113,30 +85,17 @@ module input_port #(
     */
     always_comb
     begin
-        flit_buffer = data_buffer;
-        data_cmd.flit_label = flit_buffer.flit_label;
-        data_cmd.data = flit_buffer.data;
+        data_cmd.flit_label = data_i.flit_label;
+        data_cmd.data = data_i.data;
         
         write_cmd = {VC_NUM{1'b0}};
-        if(valid_flit_buffer)
-            write_cmd[flit_buffer.vc_id] = 1;
+        if(valid_flit_i)
+            write_cmd[data_i.vc_id] = 1;
 
         read_cmd = {VC_NUM{1'b0}};
-        if(sa_valid_buffer)
-            read_cmd[sa_sel_vc_buffer] = 1;
-        xb_flit_o = data_out[sa_sel_vc_buffer];
-        
-        // data_cmd.flit_label = data_i.flit_label;
-        // data_cmd.data = data_i.data;
-        
-        // write_cmd = {VC_NUM{1'b0}};
-        // if(valid_flit_i)
-        //     write_cmd[data_i.vc_id] = 1;
-
-        // read_cmd = {VC_NUM{1'b0}};
-        // if(sa_valid_i)
-        //     read_cmd[sa_sel_vc_i] = 1;
-        // xb_flit_o = data_out[sa_sel_vc_i];
+        if(sa_valid_i)
+            read_cmd[sa_sel_vc_i] = 1;
+        xb_flit_o = data_out[sa_sel_vc_i];
     end
 
 endmodule
